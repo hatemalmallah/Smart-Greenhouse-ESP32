@@ -1,7 +1,7 @@
 ## Project Overview
 This repository contains the hardware design, firmware, and IoT integration for an industrial-grade Smart Greenhouse control system. Unlike standard automated greenhouses, this project is engineered with a strong focus on **system reliability, fault tolerance, and precise actuator control**.
 
-Powered by an **ESP32** microcontroller, the system monitors environmental parameters (Temperature, Humidity, Pressure, Gas, and Soil Moisture) via an I2C-managed **BME680** sensor. It intelligently controls 6 different actuators using dual manual/automatic modes.
+Powered by an **ESP32** microcontroller, the system monitors environmental parameters (Temperature, Humidity, Pressure, Gas, and Soil Moisture) via an I2C-managed **BME680** sensor. It intelligently controls 6 distinct actuators—represented by LEDs in this hardware prototype—simulating the following sub-systems: **Heating System, Cooling System, Water Pump, Grow Light, Ventilation Fan, and Humidifier**. The system manages all of these seamlessly using dual manual/automatic modes.
 
 ## Key Technical Highlights
 * **Advanced Control Logic:** Implemented **Hysteresis algorithms** for stable, threshold-based actuator switching to prevent relay chattering and system instability.
@@ -15,7 +15,7 @@ Powered by an **ESP32** microcontroller, the system monitors environmental param
 * BME680 Environmental Sensor
 * LCD 16x2 with I2C module
 * LDR Module (4-pin Photoresistor)
-* 6x LED (5mm)
+* 6x LED (5mm) - *Simulating Actuators*
 * 6x Resistor (220 ohm)
 * Buzzer (5V)
 * MQ-2 Gas Sensor
