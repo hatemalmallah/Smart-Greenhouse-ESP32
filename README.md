@@ -1,14 +1,20 @@
-# Smart Greenhouse IoT Ecosystem 🌱⚙️
+* **Modular Hardware Architecture:** Structured with dedicated sub-systems for processing, environmental sensing, human-machine interface (HMI), and localized alert mechanisms.
 
-## Project Overview
-This repository contains the hardware design, firmware, and IoT integration for an industrial-grade Smart Greenhouse control system. Unlike standard automated greenhouses, this project is engineered with a strong focus on **system reliability, fault tolerance, and precise actuator control**.
+## Hardware Components
 
-Powered by an **ESP32** microcontroller, the system monitors environmental parameters (Temperature, Humidity, Pressure, Gas, and Soil Moisture) via an I2C-managed **BME680** sensor. It intelligently controls 6 different actuators using dual manual/automatic modes.
+### 1. Core Processing & Communication
+* **ESP32 Development Board (30-Pin):** The central MCU handling multi-threaded sensor reading, control loops, and Wi-Fi/IoT dual-stack connectivity.
 
-## Key Technical Highlights
-* **Advanced Control Logic:** Implemented **Hysteresis algorithms** for stable, threshold-based actuator switching to prevent relay chattering and system instability.
-* **Fault Tolerance & Safety:** Engineered a robust fail-safe mechanism. The system validates sensor data ranges, falls back to the last valid reading upon error, and executes an **Emergency Shutdown** after 5 consecutive invalid retries.
-* **Signal Processing:** Utilized a Moving Average Filter (10-sample window) to clean noisy analog signals from sensors like soil moisture, preventing false triggering.
-* **IoT & Remote Management:** Features bidirectional remote control via a custom **Telegram Bot API** and **Blynk** dashboard, alongside live data telemetry logged to **ThingSpeak** every 20 seconds for future Machine Learning (Predictive Maintenance) applications.
-* **Custom Hardware:** Includes full PCB schematics and routing files designed specifically to handle the microcontroller, sensor bus, and actuator power management reliably.
-*
+### 2. Sensor Suite (Environmental Sensing)
+* **BME680 Sensor:** High-precision I2C environmental sensor measuring ambient temperature, relative humidity, barometric pressure, and VOC gas (Indoor Air Quality).
+* **MQ-2 Gas Sensor:** Analog sensor specialized in detecting LPG, smoke, and flammable gases for safety monitoring.
+* **LDR Module (4-Pin Photoresistor):** Features both Analog output (for precise lux tracking) and Digital output (with on-board potentiometer thresholding) for ambient light level detection.
+
+### 3. Actuators, Indicators & HMI
+* **6x LEDs (5mm):** Serving as localized visual status indicators representing the 6 independent actuator channels.
+* **5V Passive Buzzer:** Utilized for audible alarms during critical system failures or emergency shutdown sequences.
+* **LCD 16x2 Display (with I2C Backpack):** Local Human-Machine Interface providing real-time telemetry display while consuming only 2 pins on the I2C bus.
+* **4-Pin Push Button:** Hardware interrupt trigger used to toggle between Manual and Automatic system control modes.
+
+### 4. Passive & Discrete Components
+* **6x 220Ω Resistors:** Current-limiting resistors inline with each status indicator LED to protect the GPIO pins.
